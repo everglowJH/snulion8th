@@ -6,6 +6,7 @@
       <a href="/feeds/new">new feed</a>
     {% endif %}
     
+    
     {% for feed in feeds %} 
       <div style="border: 1px solid grey;">
         <a href="/feeds/{{ feed.id }}/like">{{ feed.like_users.count }} Likes</a>
@@ -15,6 +16,9 @@
         {% endif %}
         <p>{{ feed.title }}</p>
         <p>{{ feed.content }}</p>
+        {% if  feed.photo %}
+          <img  src="{{ feed.photo.url }}"  alt="" width="30%" height="20%">
+        {% endif %}
         <p>작성자:<strong>{{feed.author.username}}</strong>
           (following: {{ feed.author.profile.follow_to.all.count }} / follower: {{ feed.author.profile.follow_from.all.count }})
           {% if user.is_authenticated %}
@@ -30,7 +34,8 @@
           {% endif %}
         </p>
         {% for c in feed.feedcomment_set.all %}
-          <p>{{ c.content }}</p>
+          <p>{{ c.content }}</p> 
+          <a href="/feeds/{{ feed.id }}/like2">{{ feedcomment.like_users2.count }} Likes</a>
           <form action="/feeds/{{ feed.id }}/comments/{{ c.id }}/" method="POST">
             {% csrf_token %}
             <button>댓글 삭제</button>

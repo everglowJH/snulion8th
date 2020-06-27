@@ -1,0 +1,9 @@
+.header {
+  width: 100%;
+  background-color: #FFEBCD;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
+/*# sourceMappingURL=main.css.map */
